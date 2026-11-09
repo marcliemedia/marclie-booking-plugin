@@ -1,0 +1,6 @@
+{
+	"subject": "Your {tier_name} member coupon is here",
+	"preheader": "{coupon_discount} off one stay, valid until {coupon_valid_until}.",
+	"heading": "Thank you for staying with us, {guest_first_name}",
+	"body_html": "<p>As a <strong>{tier_name} member</strong> you get a member coupon every membership year.</p><h3>Your coupon</h3><p><strong>{coupon_code}</strong> – {coupon_discount} off one stay booked on our website, valid until {coupon_valid_until}. Silver coupons apply to stays of 7 or more nights. Enter the code in the price summary when you book; one coupon per booking.</p><p>Your other member perks – earlier check-in (Silver) or later check-out (Gold) when the apartment is free – are listed in your account:</p><p>{cta_button}</p><p>Kind regards,<br>{business_name}</p>"
+}

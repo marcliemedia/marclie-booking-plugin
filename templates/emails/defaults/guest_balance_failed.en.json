@@ -1,0 +1,6 @@
+{
+	"subject": "Balance payment failed – {booking_ref}",
+	"preheader": "Please pay the balance of {balance} using the secure link.",
+	"heading": "The balance payment did not go through",
+	"body_html": "<p>{guest_first_name}, we tried to charge the balance of <strong>{balance}</strong> for booking {booking_ref} to your card, but the bank declined the payment or asked for additional confirmation.</p><p>Your booking is still valid. Please pay the balance on our secure payment page – with the same or another card:</p><p>{cta_button}</p><p>If the button does not work, open this link (valid for 7 days): <a href=\"{payment_link}\">{payment_link}</a></p><p>{booking_summary}</p><p>If you need help, call us on {business_phone} or reply to this email.</p><p>Kind regards,<br>{business_name}</p>"
+}

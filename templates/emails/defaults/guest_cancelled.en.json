@@ -1,0 +1,6 @@
+{
+	"subject": "Booking {booking_ref} has been cancelled",
+	"preheader": "{unit_name} · {arrival_date} – {departure_date} · Details of your refund",
+	"heading": "Your booking has been cancelled",
+	"body_html": "<p>{guest_first_name}, we confirm that booking {booking_ref} for {unit_name} ({arrival_date} – {departure_date}) has been cancelled.</p><p>{payment_table}</p><p>If you are due a refund, the amount is shown above. Card refunds show on your account within 5–10 days, depending on your bank. Payments made in cash or by bank transfer are returned directly, and we will contact you about it.</p><p>We are sorry we will not be hosting you this time and hope to welcome you another time.</p><p>Any questions? Call us on {business_phone} or simply reply to this email.</p><p>Kind regards,<br>{business_name}</p>"
+}

@@ -1,0 +1,6 @@
+{
+	"subject": "Confirm your email to activate your account",
+	"preheader": "Confirm your address with the password you chose and your account is ready.",
+	"heading": "Confirm your email address",
+	"body_html": "<p>Hello {guest_first_name},</p><p>thank you for creating an account at {business_name}. Please confirm your email address to activate it – you will be asked for the password you chose when signing up:</p><p>{cta_button}</p><p>If the button does not work, open this link (valid for 48 hours): <a href=\"{verify_link}\">{verify_link}</a></p><p>Once confirmed, bookings made with this email address appear in your account and you receive a 5 % welcome coupon.</p><p>Did not create an account? Simply ignore this email – nothing will be set up, and without the password nobody can activate it.</p><p>Kind regards,<br>{business_name}</p>"
+}

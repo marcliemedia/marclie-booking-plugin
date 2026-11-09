@@ -1,0 +1,60 @@
+/*
+ * Marclie Booking — the phone field (intl-tel-input, assets/vendor/intl-tel-input) in the site's look:
+ * the input keeps its `w-field__input` box; the flag + dial code sit inside it on the left; the country list
+ * is a dropdown on wide screens and a fullscreen list on phones (library default). Tokens = the site's.
+ * Unlayered on purpose: the library CSS is unlayered too and loads before this file.
+ */
+
+.w-field .iti {
+	display: block;
+	width: 100%;
+	--iti-border-color: var(--border-dark, #86868b);
+	--iti-hover-color: var(--dark-5, rgba(0, 0, 0, .05));
+	--iti-icon-color: var(--text-body-dark, #6e6e73);
+	--iti-country-selector-bg: var(--bg-surface, #fff);
+	--iti-spacer-horizontal: var(--space-xs, 8px);
+}
+
+/* flag + dial code button: same height as the field, rounded like it, quiet hover */
+.w-field .iti__country-container { padding: 1px; }
+.w-field .iti__selected-country {
+	border-radius: calc(var(--radius-m, 12px) - 1px) 0 0 calc(var(--radius-m, 12px) - 1px);
+	padding-inline: var(--space-s, 12px) var(--space-2xs, 6px);
+	transition: background-color .2s ease;
+}
+.w-field .iti__selected-country-primary { padding-inline: 0; }
+.w-field .iti__selected-country:focus-visible { outline: 2px solid var(--border-strong, #4a4a4c); outline-offset: -2px; }
+
+/* the dial code reads as part of the number: same size as the input text (w-field__input: 16 px on phones) */
+.w-field .iti__selected-dial-code {
+	margin-left: var(--space-2xs, 6px);
+	color: var(--text-title, #1d1d1f);
+	font-family: var(--font-family, inherit);
+	font-size: var(--text-s, 14px);
+}
+@media (max-width: 478px) {
+	.w-field .iti__selected-dial-code { font-size: var(--text-m, 16px); }
+}
+
+/* the list: the site's overlay surface */
+.iti__country-selector {
+	border: var(--stroke, 1px solid rgba(0, 0, 0, .12));
+	border-radius: var(--radius-m, 12px);
+	background: var(--bg-surface, #fff);
+	box-shadow: var(--shadow-overlay, 0 4px 12px rgba(0, 0, 0, .06), 0 28px 72px rgba(0, 0, 0, .18));
+	overflow: hidden;
+	font-family: var(--font-family, inherit);
+	font-size: var(--text-s, 14px);
+	color: var(--text-title, #1d1d1f);
+}
+/* search field: the library places its icon and padding; only the site's border, radius and focus */
+.iti__search-input {
+	border: 1px solid var(--border-dark, #86868b);
+	border-radius: var(--radius-m, 12px);
+	font: inherit;
+	color: inherit;
+}
+.iti__search-input:focus { outline: none; border-color: var(--border-strong, #4a4a4c); box-shadow: 0 0 0 4px var(--dark-10, rgba(0, 0, 0, .09)); }
+.iti__country { padding-block: var(--space-xs, 8px); }
+.iti__country.iti__highlight { background-color: var(--dark-5, rgba(0, 0, 0, .05)); }
+.iti__dial-code { color: var(--text-body-dark, #6e6e73); }

@@ -1,0 +1,6 @@
+{
+	"subject": "New booking {booking_ref} · {unit_name} · {arrival_date}",
+	"preheader": "{guest_name} · {arrival_date} – {departure_date} · total {total}, paid {paid}",
+	"heading": "New booking {booking_ref}",
+	"body_html": "<p>New booking: <strong>{guest_name}</strong> · {unit_name} ({house_name}) · {arrival_date} – {departure_date}</p><p>{booking_summary}</p><p>{payment_table}</p><p>Guest details, payments and booking history:</p><p>{cta_button}</p>"
+}

@@ -1,0 +1,6 @@
+{
+	"subject": "Potvrdite e-mail adresu i aktivirajte račun",
+	"preheader": "Potvrdite adresu lozinkom koju ste odabrali i vaš je račun spreman.",
+	"heading": "Potvrdite svoju e-mail adresu",
+	"body_html": "<p>Pozdrav {guest_first_name},</p><p>hvala vam što ste otvorili račun za rezervacije. Molimo potvrdite svoju e-mail adresu kako biste ga aktivirali – upisat ćete lozinku koju ste odabrali pri registraciji:</p><p>{cta_button}</p><p>Ako gumb ne radi, otvorite ovu poveznicu (vrijedi 48 sati): <a href=\"{verify_link}\">{verify_link}</a></p><p>Nakon potvrde u računu ćete vidjeti rezervacije napravljene s ovom e-mail adresom i dobit ćete kupon dobrodošlice od 5 %.</p><p>Niste otvorili račun? Jednostavno zanemarite ovaj e-mail – ništa neće biti postavljeno, a bez lozinke ga nitko ne može aktivirati.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

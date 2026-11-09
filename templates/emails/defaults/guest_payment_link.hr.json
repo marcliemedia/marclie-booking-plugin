@@ -1,0 +1,6 @@
+{
+	"subject": "Poveznica za plaćanje – rezervacija {booking_ref}",
+	"preheader": "Iznos za plaćanje: {balance}. Plaćanje karticom na sigurnoj stranici.",
+	"heading": "Plaćanje rezervacije {booking_ref}",
+	"body_html": "<p>{guest_first_name}, šaljemo vam poveznicu za plaćanje rezervacije {booking_ref} za {unit_name} ({arrival_date} – {departure_date}).</p><p>Iznos za plaćanje: <strong>{balance}</strong>. Plaćate karticom na sigurnoj stranici, a potvrdu ćete primiti e-poštom.</p><p>{cta_button}</p><p>Ako gumb ne radi, otvorite ovu poveznicu: <a href=\"{payment_link}\">{payment_link}</a></p><p>{booking_summary}</p><p>Imate li pitanja? Nazovite nas na {business_phone} ili jednostavno odgovorite na ovaj e-mail.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

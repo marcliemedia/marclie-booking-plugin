@@ -1,0 +1,6 @@
+{
+	"subject": "Već imate račun",
+	"preheader": "Prijavite se ili odaberite novu lozinku.",
+	"heading": "Već imate račun",
+	"body_html": "<p>Pozdrav {guest_first_name},</p><p>netko – vjerojatno vi – upravo se pokušao registrirati s ovom e-mail adresom, no za nju račun već postoji.</p><p>{cta_button}</p><p>Zaboravili ste lozinku? <a href=\"{reset_link}\">Odaberite novu lozinku</a>.</p><p>Ako to niste bili vi, zanemarite ovaj e-mail: vaš račun nije promijenjen.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

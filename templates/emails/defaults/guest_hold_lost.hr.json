@@ -1,0 +1,6 @@
+{
+	"subject": "Termin više nije slobodan – vraćamo vam uplatu ({booking_ref})",
+	"preheader": "Vaša je uplata stigla nakon isteka rezervacije termina. Cijeli iznos vraćamo na vašu karticu.",
+	"heading": "Žao nam je, ovi su datumi u međuvremenu rezervirani",
+	"body_html": "<p>{guest_first_name}, vaša uplata za {unit_name} ({arrival_date} – {departure_date}) stigla je nakon što je rezervacija termina istekla, a u međuvremenu je netko drugi rezervirao iste datume.</p><p>Cijeli iznos od <strong>{refund_amount}</strong> vratili smo na vašu karticu. Ovisno o banci, povrat je vidljiv u roku od 5–10 dana.</p><p>Ispričavamo se zbog neugodnosti. Možda vam odgovara neki drugi apartman u istim datumima:</p><p>{cta_button}</p><p>Rado ćemo vam pomoći i telefonom: {business_phone}.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

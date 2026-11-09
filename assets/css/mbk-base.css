@@ -1,0 +1,71 @@
+/*
+ * Marclie Booking — functional base styles for the public widgets. The widget markup is the mockup's
+ * (`w-` classes = Bricks global classes, categories Components / Page sections); this file only holds what
+ * the mockup CSS does not cover: hidden/loading/error states, plugin-only fields (honeypot, Stripe), and
+ * layout-transparent widget wrappers. Selectors use data-* hooks or state on w- classes.
+ * Everything sits in the cascade layer `mbk-base`: unlayered theme / Bricks global-class CSS always wins,
+ * whatever the load order (Bricks' own frontend CSS is in the earlier-declared `bricks` layers).
+ */
+
+@layer mbk-base {
+/* Wrappers with no mockup counterpart take no box: the Bricks element root (unless the page gives it a w- class,
+   e.g. `w-stay-catalogue__catalog`) and class-less widget roots, so the markup lays out as in the mockup. */
+[class^="brxe-mbk-"]:not([class*=" w-"]), [data-mbk-widget]:not([class]) { display: contents; }
+
+.w-datepicker[hidden], [data-mbk-bookbox] [hidden], [data-mbk-catalog] [hidden] { display: none !important; }
+
+/* Date picker: look & layout = components.css .w-datepicker*. Only what the plugin adds: unselectable days stay
+   focusable (aria-disabled, not :disabled) so they mirror the mockup's :disabled look; availability loading. */
+.w-datepicker__day[aria-disabled="true"] { color: var(--text-body-dark, #595959); opacity: .5; cursor: not-allowed; }
+/* !important: beats the unlayered mockup hover `.w-datepicker__day:hover:not(:disabled)::before` */
+.w-datepicker__day[aria-disabled="true"]:hover::before { background: transparent !important; }
+.w-datepicker.is-loading [data-dp-months] { opacity: .6; transition: opacity .2s; }
+/* availability of the month not loaded yet: day not selectable, shown as loading */
+.w-datepicker__day.is-pending { cursor: progress; }
+.w-datepicker__day.is-pending::before { background: rgba(0, 0, 0, .05); animation: mbk-pulse 1.2s ease-in-out infinite; }
+@keyframes mbk-pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .w-datepicker__day.is-pending::before { animation: none; } }
+
+/* Bookbox: quote loading (the mockup has no such state) --------------------- */
+[data-mbk-bookbox].is-loading [data-mbk-lines] { opacity: .5; transition: opacity .2s; }
+
+/* Search results: look = components.css .w-catalog / .w-filters / .w-chip / .w-card-stay. Only the drawer scrim
+   (mockup base.css, no w- class; [hidden] above keeps it closed) — same values as the mockup. */
+@media (max-width: 991px) {
+	[data-mbk-catalog] [data-filter-scrim] { position: fixed; inset: 0; z-index: 94; background: rgba(0, 0, 0, .45); }
+}
+
+/* Checkout / confirmation / balance payment: look = components.css .w-checkout* / .w-field* / .w-stepper* /
+   .w-checkbox* / .w-note. Only plugin states the mockup does not style: hidden panels, honeypot, JS field
+   errors, busy price lines, Stripe container, loading spinner + buttons. */
+[data-mbk-checkout] [hidden], [data-mbk-confirmation] [hidden], [data-mbk-pay-balance] [hidden], [data-mbk-confirmation][hidden], [data-mbk-pay-balance][hidden] { display: none !important; }
+.mbk-hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+[data-mbk-widget] [data-field-error] { color: var(--text-error, #b3261e); }
+[data-mbk-widget] [aria-invalid="true"] { border-color: var(--text-error, #b3261e); outline-color: var(--text-error, #b3261e); }
+/* busy: fade the amounts only – labels and the "Loading the price…" placeholder keep full contrast */
+[data-co-lines][aria-busy="true"] dd { opacity: .5; transition: opacity .2s; }
+[data-stripe-element] { min-height: 120px; margin-bottom: var(--space-s, 12px); }
+.mbk-spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid rgba(0, 0, 0, .12); border-top-color: currentColor; border-radius: 50%; animation: mbk-spin .8s linear infinite; }
+@keyframes mbk-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .mbk-spinner { animation-duration: 2.4s; } }
+[data-mbk-widget] .is-loading:is(button, a) { opacity: .7; cursor: progress; }
+[data-mbk-widget] [tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
+
+/* Guest account (login / sign-up / password / my-account board) ------------------ */
+/* (hidden / aria-invalid / focus / field-error rules are the shared [data-mbk-widget] ones above) */
+[data-mbk-account] input[readonly] { opacity: .75; }
+[data-acct-check] + [data-field-error] { margin-top: -8px; margin-bottom: 12px; }
+[data-acct-form] > [data-acct-alert], [data-acct-done], [data-mbk-account] > .w-note { margin: 0 0 var(--space-m, 16px); }
+[data-acct-booking] + [data-acct-booking] { margin-top: var(--space-m, 16px); }
+[data-acct-card] { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-s, 12px); margin-top: var(--space-s, 12px); }
+[data-acct-card] > form, [data-acct-card] > .w-note { width: 100%; box-sizing: border-box; }
+[data-acct-card-element] { margin-bottom: var(--space-m, 16px); }
+/* account dialogs (cancel request, delete account): the mockup has no dialog for them */
+dialog[data-acct-dialog] { width: min(560px, calc(100vw - 32px)); max-height: 88vh; box-sizing: border-box; padding: var(--space-xl, 24px); border: 0; border-radius: var(--radius-l, 12px); background: var(--bg-surface, #fff); color: inherit; }
+dialog[data-acct-dialog]::backdrop { background: rgba(0, 0, 0, .45); }
+dialog[data-acct-dialog] [hidden] { display: none !important; }
+[data-mbk-account="head"] .w-page-title__lede { overflow-wrap: anywhere; }
+/* email confirmation renders in the wide account section: keep the form at auth-panel width */
+[data-mbk-account="verify"] { max-width: 560px; }
+
+}

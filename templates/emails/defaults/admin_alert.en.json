@@ -1,0 +1,6 @@
+{
+	"subject": "Alert: {alert_title} · {booking_ref}",
+	"preheader": "{alert_message}",
+	"heading": "{alert_title}",
+	"body_html": "<p>{alert_message}</p><p>{booking_summary}</p><p>{cta_button}</p>"
+}

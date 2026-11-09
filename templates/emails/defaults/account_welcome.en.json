@@ -1,0 +1,6 @@
+{
+	"subject": "Welcome, {guest_first_name} – your welcome coupon is inside",
+	"preheader": "Coupon {coupon_code}: {coupon_discount} off your next stay, valid until {coupon_valid_until}.",
+	"heading": "Welcome, {guest_first_name}!",
+	"body_html": "<p>Your account is active. In it you will find your bookings, payments, coupons and member perks – bookings made with this email address are linked automatically.</p><h3>Your welcome coupon</h3><p><strong>{coupon_code}</strong> – {coupon_discount} off your next booking on our website, valid until {coupon_valid_until}. Enter the code in the price summary when you book; one coupon per booking.</p><p>{cta_button}</p><p>After your first completed stay you become a Silver member, after three a Gold member – with a coupon every year and earlier check-in or later check-out when the apartment is free.</p><p>We look forward to welcoming you!<br>{business_name}</p>"
+}

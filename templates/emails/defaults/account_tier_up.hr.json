@@ -1,0 +1,6 @@
+{
+	"subject": "Razina članstva {tier_name} – vaš novi kupon",
+	"preheader": "{coupon_discount} popusta na jedan boravak, vrijedi do {coupon_valid_until}",
+	"heading": "Hvala vam što boravite kod nas, {guest_first_name}",
+	"body_html": "<p>Vaša razina članstva je <strong>{tier_name}</strong>, a uz nju svake godine dobivate kupon za članove.</p><h3>Vaš kupon</h3><p><strong>{coupon_code}</strong> – {coupon_discount} popusta na jedan boravak rezerviran na našoj web-stranici (vrijedi do {coupon_valid_until}). Srebrni kupon vrijedi za boravke od 7 ili više noćenja. Kod unesite u pregledu cijene pri rezervaciji; jedan kupon po rezervaciji.</p><p>Ostale pogodnosti – raniji dolazak (Srebrni) ili kasniji odlazak (Zlatni) kada je apartman slobodan – navedene su u vašem računu:</p><p>{cta_button}</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

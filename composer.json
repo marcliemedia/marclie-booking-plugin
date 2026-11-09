@@ -1,0 +1,32 @@
+{
+    "name": "marclie/marclie-booking",
+    "description": "Direct booking engine for short-term rentals (WordPress plugin).",
+    "type": "wordpress-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Marclie Agency"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "stripe/stripe-php": "^22.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marclie\\Booking\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "platform": {
+            "php": "8.1.0"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}

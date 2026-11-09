@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Test//Folded Escaped//EN
+BEGIN:VEVENT
+UID:folded-uid-0001-abcdefghijklmnopqrstuvwxyz-0123456789-abcdefghijklmnopq
+ rstuvwxyz@example.com
+DTSTART;VALUE=DATE:20280601
+DTEND;VALUE=DATE:20280604
+SUMMARY:Gost\, obitelj\; dolazak kasno\nDruga linija \\ kosa crta – Žute
+  ruže čekaju
+ATTENDEE;CN="Doe: John; Jr.";ROLE=REQ-PARTICIPANT:mailto:john@example.com
+BEGIN:VALARM
+TRIGGER:-PT15M
+DTSTART:20300101T000000Z
+SUMMARY:Alarm must be ignored
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tab-folded@example.com
+DTSTART;VALUE=DATE:2028
+	0610
+DTEND;VALUE=DATE:20280612
+SUMMARY:Tab
+	folded
+END:VEVENT
+END:VCALENDAR

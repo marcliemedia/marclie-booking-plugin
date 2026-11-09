@@ -1,0 +1,6 @@
+{
+	"subject": "Poruka od {business_name}",
+	"preheader": "",
+	"heading": "",
+	"body_html": "<p>Dobar dan, {guest_first_name},</p><p></p><p>Srdačan pozdrav,<br>{business_name}<br>{business_phone}</p>"
+}

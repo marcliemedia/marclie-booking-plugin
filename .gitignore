@@ -1,0 +1,7 @@
+node_modules/
+admin-app/node_modules/
+/vendor/
+*.zip
+.DS_Store
+.phpunit.result.cache
+.phpunit.cache/

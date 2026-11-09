@@ -1,0 +1,6 @@
+{
+	"subject": "Rezervacija {booking_ref} je u cijelosti plaćena",
+	"preheader": "Primili smo ostatak iznosa. Na licu mjesta plaćate samo boravišnu pristojbu.",
+	"heading": "Hvala, rezervacija je u cijelosti plaćena",
+	"body_html": "<p>{guest_first_name}, primili smo ostatak iznosa i vaša rezervacija {booking_ref} sada je u cijelosti plaćena.</p><p>{payment_table}</p><p>Na licu mjesta plaćate samo boravišnu pristojbu. Tri dana prije dolaska poslat ćemo vam upute za dolazak.</p><p>{cta_button}</p><p>Imate li pitanja? Nazovite nas na {business_phone} ili jednostavno odgovorite na ovaj e-mail.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

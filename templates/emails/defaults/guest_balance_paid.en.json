@@ -1,0 +1,6 @@
+{
+	"subject": "Booking {booking_ref} is paid in full",
+	"preheader": "We have received the balance. On site you only pay the tourist tax.",
+	"heading": "Thank you, your booking is paid in full",
+	"body_html": "<p>{guest_first_name}, we have received the balance and booking {booking_ref} is now paid in full.</p><p>{payment_table}</p><p>On site you only pay the tourist tax. Three days before arrival we will email you directions.</p><p>{cta_button}</p><p>Any questions? Call us on {business_phone} or simply reply to this email.</p><p>Kind regards,<br>{business_name}</p>"
+}

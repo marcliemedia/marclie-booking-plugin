@@ -1,0 +1,6 @@
+{
+	"subject": "Rezervacija {booking_ref} je otkazana",
+	"preheader": "{unit_name} · {arrival_date} – {departure_date} · Pojedinosti o povratu novca",
+	"heading": "Vaša rezervacija je otkazana",
+	"body_html": "<p>{guest_first_name}, potvrđujemo da je rezervacija {booking_ref} za {unit_name} ({arrival_date} – {departure_date}) otkazana.</p><p>{payment_table}</p><p>Ako vam pripada povrat novca, iznos je naveden u pregledu iznad. Povrat na karticu, ovisno o banci, vidljiv je u roku od 5–10 dana. Uplate gotovinom ili bankovnim prijenosom vraćamo izravno i javit ćemo vam se u vezi s tim.</p><p>Žao nam je što vas ovaj put nećemo ugostiti i nadamo se da ćemo se vidjeti nekom drugom prilikom.</p><p>Imate li pitanja? Nazovite nas na {business_phone} ili jednostavno odgovorite na ovaj e-mail.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

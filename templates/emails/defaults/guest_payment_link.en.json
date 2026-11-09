@@ -1,0 +1,6 @@
+{
+	"subject": "Payment link for booking {booking_ref}",
+	"preheader": "Amount to pay: {balance}. Card payment on a secure page.",
+	"heading": "Payment for booking {booking_ref}",
+	"body_html": "<p>{guest_first_name}, here is the payment link for booking {booking_ref} for {unit_name} ({arrival_date} – {departure_date}).</p><p>Amount to pay: <strong>{balance}</strong>. You pay by card on a secure page and receive the confirmation by email.</p><p>{cta_button}</p><p>If the button does not work, open this link: <a href=\"{payment_link}\">{payment_link}</a></p><p>{booking_summary}</p><p>Any questions? Call us on {business_phone} or simply reply to this email.</p><p>Kind regards,<br>{business_name}</p>"
+}

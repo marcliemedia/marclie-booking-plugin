@@ -1,0 +1,6 @@
+{
+	"subject": "See you soon – getting here ({booking_ref})",
+	"preheader": "Check-in {arrival_date}, {checkin_window}. Address and what to bring.",
+	"heading": "See you in a few days, {guest_first_name}",
+	"body_html": "<p>We look forward to welcoming you! Here is everything you need for your arrival.</p><h3>Check-in and check-out</h3><ul><li>Check-in: <strong>{arrival_date}</strong>, {checkin_window}</li><li>Check-out: <strong>{departure_date}</strong>, by {checkout_until}</li><li>Later arrival is possible by arrangement – let us know your estimated arrival time.</li></ul><h3>Address</h3><p>{business_name}, {business_address}.</p><p>{cta_button}</p><h3>What to bring</h3><p>To register your stay we need an ID card or passport for every guest. The tourist tax is payable on site.</p><p>{booking_summary}</p><p>If you are running late or need help on the way, call us on {business_phone}.</p><p>Safe travels!<br>{business_name}</p>"
+}

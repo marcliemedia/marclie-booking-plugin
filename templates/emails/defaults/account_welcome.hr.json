@@ -1,0 +1,6 @@
+{
+	"subject": "Dobro došli, {guest_first_name} – vaš kupon dobrodošlice",
+	"preheader": "Kupon {coupon_code}: {coupon_discount} popusta na sljedeći boravak, vrijedi do {coupon_valid_until}",
+	"heading": "Dobro došli, {guest_first_name}!",
+	"body_html": "<p>Vaš je račun aktivan. U njemu su vaše rezervacije, plaćanja, kuponi i pogodnosti članstva – rezervacije napravljene s ovom e-mail adresom povezuju se automatski.</p><h3>Vaš kupon dobrodošlice</h3><p><strong>{coupon_code}</strong> – {coupon_discount} popusta na sljedeću rezervaciju na našoj web-stranici (vrijedi do {coupon_valid_until}). Kod unesite u pregledu cijene pri rezervaciji; jedan kupon po rezervaciji.</p><p>{cta_button}</p><p>Nakon prvog završenog boravka postajete Srebrni član, a nakon tri Zlatni član – s kuponom svake godine te ranijim dolaskom ili kasnijim odlaskom kada je apartman slobodan.</p><p>Radujemo se vašem dolasku!<br>{business_name}</p>"
+}

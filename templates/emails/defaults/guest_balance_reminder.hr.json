@@ -1,0 +1,6 @@
+{
+	"subject": "Podsjetnik: ostatak iznosa za rezervaciju {booking_ref}",
+	"preheader": "Ostatak iznosa od {balance} naplatit ćemo {balance_due_date} s kartice •••• {card_last4}.",
+	"heading": "Vaš se boravak bliži",
+	"body_html": "<p>{guest_first_name}, podsjećamo vas da ćemo ostatak iznosa od <strong>{balance}</strong> za rezervaciju {booking_ref} naplatiti <strong>{balance_due_date}</strong> s kartice •••• {card_last4} kojom ste platili akontaciju. Ne trebate ništa poduzeti.</p><p>Želite li platiti drugom karticom ili imate pitanja o plaćanju, javite nam se prije tog datuma na {business_phone} ili odgovorom na ovaj e-mail.</p><p>{booking_summary}</p><p>{cta_button}</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}

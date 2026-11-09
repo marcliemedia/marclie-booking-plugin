@@ -1,0 +1,6 @@
+{
+	"subject": "Vidimo se uskoro – upute za dolazak ({booking_ref})",
+	"preheader": "Dolazak {arrival_date}, {checkin_window}. Adresa i što ponijeti.",
+	"heading": "Vidimo se za nekoliko dana, {guest_first_name}",
+	"body_html": "<p>Veselimo se vašem dolasku! Ovdje je sve što vam treba za dolazak.</p><h3>Dolazak i odlazak</h3><ul><li>Dolazak: <strong>{arrival_date}</strong>, {checkin_window}</li><li>Odlazak: <strong>{departure_date}</strong>, do {checkout_until}</li><li>Kasniji dolazak moguć je uz prethodni dogovor – javite nam okvirno vrijeme dolaska.</li></ul><h3>Adresa</h3><p>{business_name}, {business_address}.</p><p>{cta_button}</p><h3>Što ponijeti</h3><p>Za prijavu boravka potrebna nam je osobna iskaznica ili putovnica svakog gosta. Boravišna pristojba plaća se na licu mjesta.</p><p>{booking_summary}</p><p>Ako kasnite ili vam treba pomoć na putu, nazovite nas na {business_phone}.</p><p>Sretan put!<br>{business_name}</p>"
+}

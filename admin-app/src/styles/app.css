@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Brand tokens from figma-bridge/tokens.json as HSL channels (shadcn/ui convention).
+ * ink #000000 / #1D1D1F, surface #FFFFFF / #F5F5F7, border #E8E8ED / #D2D2D7,
+ * accent #E0174F / #C81244, success #2F6B3A / #EEF6EF,
+ * warning #8A5300 / #FFF6E5, danger #B20024 / #FFF0F1.
+ */
+#mbk-app {
+	--ink: 0 0% 0%;
+	--ink-soft: 240 3% 12%;
+	--surface: 0 0% 100%;
+	--surface-muted: 240 11% 96%;
+	--border: 240 11% 92%;
+	--border-strong: 240 5% 84%;
+	--accent: 344 81% 48%;
+	--accent-hover: 343 83% 43%;
+	--accent-soft: 345 90% 97%;
+	--accent-foreground: 0 0% 100%;
+	--success: 127 39% 30%;
+	--success-soft: 125 35% 95%;
+	--warning: 36 100% 27%;
+	--warning-soft: 40 100% 95%;
+	--danger: 348 100% 35%;
+	--danger-soft: 354 100% 97%;
+
+	--canvas: var(--surface-muted);
+	--background: var(--surface);
+	--foreground: var(--ink-soft);
+	--card: var(--surface);
+	--card-foreground: var(--ink-soft);
+	--popover: var(--surface);
+	--popover-foreground: var(--ink-soft);
+	--primary: var(--ink-soft);
+	--primary-foreground: var(--surface);
+	--secondary: var(--surface-muted);
+	--secondary-foreground: var(--ink-soft);
+	--muted: var(--surface-muted);
+	--muted-foreground: 240 2% 40%;
+	--destructive: var(--danger);
+	--destructive-foreground: 0 0% 100%;
+	--input: var(--border-strong);
+	--ring: var(--accent);
+	--radius: 0.75rem;
+
+	--chart-1: var(--accent);
+	--chart-2: 240 3% 12%;
+	--chart-3: 127 39% 40%;
+	--chart-4: 36 90% 45%;
+	--chart-5: 220 60% 50%;
+
+	color: hsl(var(--foreground));
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	background: hsl(var(--canvas));
+	min-height: calc(100vh - 32px);
+}
+
+/* Scoped reset (preflight is disabled so wp-admin keeps its own styles). */
+#mbk-app *,
+#mbk-app ::before,
+#mbk-app ::after {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+	border-color: hsl(var(--border));
+}
+
+#mbk-app h1,
+#mbk-app h2,
+#mbk-app h3,
+#mbk-app h4,
+#mbk-app p,
+#mbk-app ul,
+#mbk-app ol,
+#mbk-app li,
+#mbk-app dl,
+#mbk-app dd,
+#mbk-app dt,
+#mbk-app figure {
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+
+#mbk-app ul,
+#mbk-app ol {
+	list-style: none;
+}
+
+#mbk-app a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+#mbk-app a:focus,
+#mbk-app button:focus {
+	box-shadow: none;
+}
+
+#mbk-app table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-indent: 0;
+}
+
+#mbk-app button,
+#mbk-app input,
+#mbk-app select,
+#mbk-app textarea {
+	font: inherit;
+	color: inherit;
+	margin: 0;
+	line-height: inherit;
+	letter-spacing: inherit;
+}
+
+/* Neutralise wp-admin form control styling (forms.css) inside the app. */
+#mbk-app :where(input[type="text"], input[type="search"], input[type="email"], input[type="number"], input[type="tel"], input[type="url"], input[type="password"], input[type="date"], input[type="time"], textarea, select) {
+	box-shadow: none;
+	border-radius: calc(var(--radius) - 4px);
+	min-height: 0;
+	padding: 0;
+	background-color: transparent;
+	border-color: hsl(var(--input));
+	border-width: 1px;
+	font-size: 14px;
+	line-height: 1.25rem;
+}
+
+#mbk-app :where(input:focus, textarea:focus, select:focus) {
+	outline: none;
+	box-shadow: none;
+}
+
+#mbk-app :where(input[type="checkbox"], input[type="radio"]) {
+	-webkit-appearance: auto;
+	appearance: auto;
+	box-shadow: none;
+	width: 16px;
+	height: 16px;
+	min-width: 0;
+	margin: 0;
+	border-width: revert;
+	accent-color: hsl(var(--ink-soft));
+}
+
+#mbk-app :where(button) {
+	cursor: pointer;
+	background-color: transparent;
+	padding: 0;
+	text-transform: none;
+}
+
+#mbk-app button:disabled {
+	cursor: default;
+}
+
+#mbk-app img,
+#mbk-app svg {
+	display: block;
+	max-width: 100%;
+}
+
+#mbk-app [hidden] {
+	display: none;
+}
+
+#mbk-app .tabular {
+	font-variant-numeric: tabular-nums;
+}
+
+#mbk-app .hatched {
+	background-image: repeating-linear-gradient(
+		135deg,
+		hsl(var(--ink) / 0.14) 0,
+		hsl(var(--ink) / 0.14) 2px,
+		transparent 2px,
+		transparent 7px
+	);
+}
+
+#mbk-app .skeleton-shimmer {
+	animation: mbk-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes mbk-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#mbk-app *,
+	#mbk-app ::before,
+	#mbk-app ::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/*
+ * wp-admin chrome on the app page only (body class from add_menu_page()).
+ * Keeps the admin bar and the admin menu; removes padding, footer and stray notices.
+ */
+body.toplevel_page_marclie-booking {
+	background: #f5f5f7;
+}
+
+body.toplevel_page_marclie-booking #wpcontent {
+	padding-left: 0;
+}
+
+body.toplevel_page_marclie-booking #wpbody-content {
+	padding-bottom: 0;
+	float: none;
+}
+
+body.toplevel_page_marclie-booking #wpfooter,
+body.toplevel_page_marclie-booking #screen-meta,
+body.toplevel_page_marclie-booking #screen-meta-links,
+body.toplevel_page_marclie-booking #wpbody-content > .notice,
+body.toplevel_page_marclie-booking #wpbody-content > .error,
+body.toplevel_page_marclie-booking #wpbody-content > .updated,
+body.toplevel_page_marclie-booking #wpbody-content > .update-nag {
+	display: none;
+}
+
+@media screen and (max-width: 782px) {
+	body.toplevel_page_marclie-booking #mbk-app {
+		min-height: calc(100vh - 46px);
+	}
+}

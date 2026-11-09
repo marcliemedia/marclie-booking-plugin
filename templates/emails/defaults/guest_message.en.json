@@ -1,0 +1,6 @@
+{
+	"subject": "A message from {business_name}",
+	"preheader": "",
+	"heading": "",
+	"body_html": "<p>Hello {guest_first_name},</p><p></p><p>Kind regards,<br>{business_name}<br>{business_phone}</p>"
+}

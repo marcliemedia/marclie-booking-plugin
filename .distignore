@@ -1,0 +1,20 @@
+# Development sources and tooling (excluded from the release zip).
+/admin-app
+node_modules
+/tests
+/plans
+/.git
+/.github
+/.gitignore
+/.distignore
+/composer.json
+/composer.lock
+/phpunit.xml
+/phpunit.xml.dist
+/phpcs.xml
+/phpcs.xml.dist
+/*.md
+*.zip
+.DS_Store
+/.phpunit.result.cache
+.phpunit.cache

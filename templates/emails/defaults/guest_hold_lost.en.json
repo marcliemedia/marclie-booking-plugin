@@ -1,0 +1,6 @@
+{
+	"subject": "These dates are no longer available – your payment is refunded ({booking_ref})",
+	"preheader": "Your payment arrived after the reservation of the dates had expired. We are refunding the full amount to your card.",
+	"heading": "We are sorry, these dates were booked in the meantime",
+	"body_html": "<p>{guest_first_name}, your payment for {unit_name} ({arrival_date} – {departure_date}) arrived after the reservation of the dates had expired, and someone else booked them in the meantime.</p><p>We have refunded the full amount of <strong>{refund_amount}</strong> to your card; depending on your bank it shows within 5–10 days.</p><p>We apologise for the inconvenience. Another apartment may be free on the same dates:</p><p>{cta_button}</p><p>We are also happy to help by phone: {business_phone}.</p><p>Kind regards,<br>{business_name}</p>"
+}

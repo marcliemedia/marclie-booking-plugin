@@ -1,0 +1,6 @@
+{
+	"subject": "Reminder: balance for booking {booking_ref}",
+	"preheader": "We will charge the balance of {balance} to your card •••• {card_last4} on {balance_due_date}.",
+	"heading": "Your stay is coming up",
+	"body_html": "<p>{guest_first_name}, this is a reminder that we will charge the balance of <strong>{balance}</strong> for booking {booking_ref} on <strong>{balance_due_date}</strong> to the card •••• {card_last4} you paid the deposit with. You do not need to do anything.</p><p>If you would like to pay with another card or have questions about the payment, contact us before that date on {business_phone} or reply to this email.</p><p>{booking_summary}</p><p>{cta_button}</p><p>Kind regards,<br>{business_name}</p>"
+}

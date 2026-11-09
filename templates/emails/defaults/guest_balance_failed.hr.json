@@ -1,0 +1,6 @@
+{
+	"subject": "Plaćanje ostatka iznosa nije uspjelo – {booking_ref}",
+	"preheader": "Molimo platite ostatak iznosa od {balance} putem sigurne poveznice.",
+	"heading": "Plaćanje ostatka iznosa nije uspjelo",
+	"body_html": "<p>{guest_first_name}, pokušali smo s vaše kartice naplatiti ostatak iznosa od <strong>{balance}</strong> za rezervaciju {booking_ref}, no banka je plaćanje odbila ili traži dodatnu potvrdu.</p><p>Vaša rezervacija i dalje vrijedi. Molimo platite ostatak iznosa na sigurnoj stranici za plaćanje – istom ili drugom karticom:</p><p>{cta_button}</p><p>Ako gumb ne radi, otvorite ovu poveznicu (vrijedi 7 dana): <a href=\"{payment_link}\">{payment_link}</a></p><p>{booking_summary}</p><p>Trebate li pomoć, nazovite nas na {business_phone} ili odgovorite na ovaj e-mail.</p><p>Srdačan pozdrav,<br>{business_name}</p>"
+}
