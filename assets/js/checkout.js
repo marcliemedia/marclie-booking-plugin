@@ -4,7 +4,7 @@
  * States (data-state): `free` two-step wizard, `booked` (zauzeto), `dates` (inline picker → reload
  * with dolazak/odlazak), `no_unit`. Step 1 „Vaši podaci” validates client-side and re-quotes;
  * step 2 mounts the Stripe Payment Element (deferred intent, deposit amount) and submits:
- * elements.submit() → POST /bookings → stripe.confirmPayment() → redirect to /rezervacija/hvala/.
+ * elements.submit() → [Turnstile token] → POST /bookings → stripe.confirmPayment() → redirect to /rezervacija/hvala/.
  * Guest fields are drafted in sessionStorage; the aside shows the POST /quote display lines and
  * applies the coupon through /quote. Without Stripe keys step 2 shows the offline notice.
  */
@@ -437,7 +437,67 @@
 			paymentEl.on("change", onPaymentChange);
 			paymentEl.on("loaderror", () => setOffline());
 			paymentEl.mount($("[data-co-element]", root));
+			if (captcha) captcha.preload();
 		}
+
+		/*
+		 * Bot check (Cloudflare Turnstile, cfg.turnstile = site key): every POST /bookings carries a fresh
+		 * single-use token. The widget stays invisible unless Cloudflare wants an interaction.
+		 */
+		const captcha = cfg.turnstile ? (() => {
+			let loading = null, widget = null, box = null, pending = null;
+			function load() {
+				if (!loading) {
+					loading = new Promise((resolve, reject) => {
+						if (window.turnstile) { resolve(window.turnstile); return; }
+						const s = document.createElement("script");
+						s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+						s.async = true;
+						s.onload = () => (window.turnstile ? resolve(window.turnstile) : s.onerror());
+						s.onerror = () => { loading = null; s.remove(); reject(new Error("turnstile")); };
+						document.head.appendChild(s);
+					});
+				}
+				return loading;
+			}
+			function settle(fn, value) {
+				if (!pending) return;
+				const p = pending;
+				pending = null;
+				p[fn](value);
+			}
+			return {
+				preload() { load().catch(() => {}); },
+				async token() {
+					const ts = await load();
+					if (!box) {
+						box = document.createElement("div");
+						box.className = "w-checkout__captcha";
+						(payBox || form).append(box);
+					}
+					return new Promise((resolve, reject) => {
+						settle("reject", new Error("turnstile"));
+						pending = { resolve, reject };
+						if (widget === null) {
+							widget = ts.render(box, {
+								sitekey: cfg.turnstile,
+								action: "booking",
+								execution: "execute",
+								appearance: "interaction-only",
+								language: cfg.lang === "en" ? "en" : "hr",
+								callback: t => settle("resolve", t),
+								"error-callback": () => settle("reject", new Error("turnstile")),
+								"timeout-callback": () => settle("reject", new Error("turnstile"))
+							});
+						} else {
+							ts.reset(widget);
+						}
+						ts.execute(widget);
+					});
+				}
+			};
+		})() : null;
+
 		/*
 		 * [data-co-pay-error] (role=alert) shows a field error reported by Stripe on change ("stripe") or a
 		 * message of our submit/decline path ("submit"). Stripe emits a change right after a failed
@@ -619,7 +679,10 @@
 					// changed details (or a hold about to end): new booking that releases the previous hold
 					const supersede = booking && booking.ref && booking.token ? { ref: booking.ref, t: booking.token } : null;
 					try {
-						booking = await mbk.api("bookings", { body: supersede ? Object.assign({ supersede }, payload) : payload });
+						const extra = {};
+						if (supersede) extra.supersede = supersede;
+						if (captcha) extra.captcha = await captcha.token();
+						booking = await mbk.api("bookings", { body: Object.assign(extra, payload) });
 					} catch (err) {
 						apiError(err);
 						return;

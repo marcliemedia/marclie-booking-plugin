@@ -8222,3 +8222,7 @@ msgstr ""
 #: build/admin/settings.e9073e3b.js:23
 msgid "Only administrators can change booking settings."
 msgstr ""
+
+#: src/Rest/Public/BaseController.php:251
+msgid "The security check failed. Please try again."
+msgstr ""

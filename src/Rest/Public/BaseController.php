@@ -54,6 +54,8 @@ abstract class BaseController {
 		'not_found'          => 404,
 		'invalid_request'    => 400,
 		'invalid_transition' => 409,
+		'cross_site'         => 403,
+		'captcha_failed'     => 403,
 	);
 
 	abstract public function register(): void;
@@ -154,8 +156,24 @@ abstract class BaseController {
 		return null;
 	}
 
+	/**
+	 * 403 `cross_site` when a browser sent the request from another site (see SameOrigin).
+	 */
+	protected static function crossSite( \WP_REST_Request $request ): ?\WP_Error {
+		$host = $request->get_header( 'host' ) ?? ( isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '' );
+
+		return SameOrigin::allowed( $request->get_header( 'sec_fetch_site' ), $request->get_header( 'origin' ), (string) $host ) ? null : self::error( 'cross_site' );
+	}
+
 	/** Salted hash of the client bucket (IPv4 address / IPv6 /64): no IP is stored. */
 	protected static function clientHash(): string {
+		$bucket = RateLimit::bucket( self::clientIp() );
+
+		return substr( hash_hmac( 'sha256', $bucket, wp_salt( 'nonce' ) ), 0, 20 );
+	}
+
+	/** Client IP: REMOTE_ADDR, or X-Forwarded-For behind a proxy listed in `mbk_trusted_proxies`. */
+	protected static function clientIp(): string {
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- parsed by filter_var in RateLimit.
 		$remote = isset( $_SERVER['REMOTE_ADDR'] ) ? wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) : '';
 		$xff    = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? wp_unslash( (string) $_SERVER['HTTP_X_FORWARDED_FOR'] ) : null;
@@ -168,9 +186,8 @@ abstract class BaseController {
 		 * @param list<string> $proxies
 		 */
 		$trusted = array_values( array_filter( array_map( 'strval', (array) apply_filters( 'mbk_trusted_proxies', array() ) ) ) );
-		$bucket  = RateLimit::bucket( RateLimit::clientIp( $remote, $xff, $trusted ) );
 
-		return substr( hash_hmac( 'sha256', $bucket, wp_salt( 'nonce' ) ), 0, 20 );
+		return RateLimit::clientIp( $remote, $xff, $trusted );
 	}
 
 	/**
@@ -230,6 +247,8 @@ abstract class BaseController {
 				return __( 'These dates are already booked.', 'marclie-booking' );
 			case 'coupon_invalid':
 				return self::couponMessage( (string) ( $context['reason'] ?? '' ), $context );
+			case 'captcha_failed':
+				return __( 'The security check failed. Please try again.', 'marclie-booking' );
 			case 'unit_not_found':
 				return __( 'Apartment not found.', 'marclie-booking' );
 			case 'no_rate':

@@ -4,7 +4,8 @@
  *
  * - POST /bookings — online checkout: validates the guest, re-quotes on the
  *   server, holds the nights and returns the PaymentIntent client secret
- *   (201). Honeypot `website`, 5 bookings per hour per client.
+ *   (201). Honeypot `website`, 5 bookings per hour per client, Turnstile token
+ *   `captcha` when MBK_TURNSTILE_* are set (403 captcha_failed).
  *   409 unavailable · 422 validation (data.fields)/min_stay/capacity/coupon ·
  *   503 payments_unavailable · 429 rate_limited. Signed in to the verified
  *   guest account of the booking email (cookie + X-WP-Nonce), the booking and
@@ -38,6 +39,7 @@ use Marclie\Booking\Payment\Intent;
 use Marclie\Booking\Repository\PaymentRepository;
 use Marclie\Booking\Service\QuoteDisplay;
 use Marclie\Booking\Service\SearchService;
+use Marclie\Booking\Service\Turnstile;
 use Marclie\Booking\Settings;
 
 defined( 'ABSPATH' ) || exit;
@@ -73,6 +75,10 @@ final class BookingController extends BaseController {
 				'message'      => array( 'type' => array( 'string', 'null' ) ),
 				'terms'        => array( 'type' => array( 'boolean', 'null' ) ),
 				'website'      => array( 'type' => array( 'string', 'null' ) ),
+				'captcha'      => array(
+					'type'      => array( 'string', 'null' ),
+					'maxLength' => 2048,
+				),
 				'supersede'    => array( 'type' => array( 'object', 'null' ) ),
 			),
 			self::CACHE_NONE
@@ -109,6 +115,9 @@ final class BookingController extends BaseController {
 		$limited = self::throttle( 'booking', self::RATE_LIMIT, HOUR_IN_SECONDS );
 		if ( $limited ) {
 			return $limited;
+		}
+		if ( ! Turnstile::verify( (string) $request['captcha'], self::clientIp() ) ) {
+			return self::error( 'captcha_failed' );
 		}
 
 		$coupon    = trim( (string) $request['coupon'] );

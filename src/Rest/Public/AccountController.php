@@ -13,6 +13,8 @@
  *   client, 20 attempts / 15 min per client → 429)
  * - POST password/forgot {email} → always {sent:true} (email sent by a cron job)
  * - POST password/reset {login, key, password} → {reset:true} · 400 invalid_key
+ * verify / login / password/reset sign a visitor in: a browser request from another site
+ * answers 403 cross_site (login CSRF, see SameOrigin).
  *
  * Signed in (WordPress cookie + `X-WP-Nonce: wp_rest` — mbkFront.account.nonce;
  * role mbk_guest, else 401 not_logged_in):
@@ -217,6 +219,10 @@ final class AccountController extends BaseController {
 
 	/** @return array<string, mixed>|\WP_Error */
 	public function verify( \WP_REST_Request $request, string $lang ) {
+		$foreign = self::crossSite( $request );
+		if ( $foreign ) {
+			return $foreign;
+		}
 		$token   = strtolower( trim( (string) $request['token'] ) );
 		$limited = self::throttle( 'account_verify', 30, HOUR_IN_SECONDS ) ?? self::throttle( 'account_verify_' . substr( hash( 'sha256', $token ), 0, 16 ), 10, self::LOGIN_WINDOW );
 		if ( $limited ) {
@@ -235,6 +241,10 @@ final class AccountController extends BaseController {
 		$email = strtolower( trim( (string) $request['email'] ) );
 		if ( '' !== trim( (string) $request['website'] ) ) {
 			return self::error( 'invalid_request' );
+		}
+		$foreign = self::crossSite( $request );
+		if ( $foreign ) {
+			return $foreign;
 		}
 		$failures = 'account_login_' . substr( hash( 'sha256', $email ), 0, 16 );
 		$global   = 'mbk_rl_account_login_email_' . substr( hash( 'sha256', $email ), 0, 32 );
@@ -280,7 +290,7 @@ final class AccountController extends BaseController {
 
 	/** @return array{reset: true}|\WP_Error */
 	public function reset( \WP_REST_Request $request ) {
-		$limited = self::throttle( 'account_reset', 10, HOUR_IN_SECONDS );
+		$limited = self::crossSite( $request ) ?? self::throttle( 'account_reset', 10, HOUR_IN_SECONDS );
 		if ( $limited ) {
 			return $limited;
 		}

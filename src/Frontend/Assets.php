@@ -13,6 +13,7 @@ use Marclie\Booking\Container;
 use Marclie\Booking\I18n\LanguageAdapter;
 use Marclie\Booking\Plugin;
 use Marclie\Booking\Payment\StripeConfig;
+use Marclie\Booking\Service\Turnstile;
 use Marclie\Booking\Settings;
 
 defined( 'ABSPATH' ) || exit;
@@ -275,6 +276,8 @@ final class Assets {
 				'publishableKey' => StripeConfig::configured() ? StripeConfig::publishableKey() : null,
 				'mode'           => StripeConfig::mode(),
 			),
+			// Cloudflare Turnstile site key of the checkout bot check (checkout.js loads the widget), null when off.
+			'turnstile'     => Turnstile::siteKey(),
 		);
 	}
 

@@ -55,6 +55,12 @@ final class AccountPages {
 	/* Routing ------------------------------------------------------------------ */
 
 	public static function route(): void {
+		// A signed-in visitor's pages carry personal data inline (mbkFront.account, checkout pre-fill):
+		// never stored by the browser or a page cache, whatever the cache's logged-in rules.
+		if ( is_user_logged_in() ) {
+			self::noCache();
+		}
+
 		$page = self::currentPage();
 		// The Bricks builder edits these pages as a logged-in editor: never redirect it.
 		if ( null === $page || ( function_exists( 'bricks_is_builder' ) && bricks_is_builder() ) ) {
@@ -62,7 +68,7 @@ final class AccountPages {
 		}
 
 		// Per-visitor pages: never cached by the browser or a page cache.
-		nocache_headers();
+		self::noCache();
 		$lang = LanguageAdapter::current();
 
 		if ( self::ACCOUNT === $page ) {
@@ -85,6 +91,14 @@ final class AccountPages {
 		if ( self::isGuest() && in_array( $page, array( self::LOGIN, self::REGISTER ), true ) ) {
 			wp_safe_redirect( self::redirectTarget( $lang ) );
 			exit;
+		}
+	}
+
+	/** `Cache-Control: no-store …` headers and DONOTCACHEPAGE for page-cache plugins. */
+	private static function noCache(): void {
+		nocache_headers();
+		if ( ! defined( 'DONOTCACHEPAGE' ) ) {
+			define( 'DONOTCACHEPAGE', true );
 		}
 	}
 

@@ -73,6 +73,17 @@ Trong Stripe Dashboard, tạo webhook tới `https://<domain>/wp-json/marclie-bo
 
 Nhiều site dùng chung một tài khoản Stripe được: mỗi PaymentIntent mang metadata `site`, nên site này không xử lý giao dịch của site khác. Kiểm tra kết nối tại Bookings › Settings › Stripe.
 
+Restricted key (`rk_…`) cần quyền ghi PaymentIntents, Customers, SetupIntents, Refunds và quyền đọc **Connect › Accounts** (nút kiểm tra kết nối dùng quyền này).
+
+**Chống bot ở bước thanh toán (nên bật trên site live):** tạo widget Cloudflare Turnstile (Managed) cho domain, rồi thêm vào `wp-config.php`:
+
+```php
+define( 'MBK_TURNSTILE_SITE_KEY', '0x…' );
+define( 'MBK_TURNSTILE_SECRET_KEY', '0x…' );
+```
+
+Khi có đủ hai key, mỗi `POST /bookings` phải kèm token Turnstile (widget ẩn, chỉ hiện khi Cloudflare cần khách bấm xác nhận); token sai trả 403 `captcha_failed`. Nếu Cloudflare không phản hồi hoặc secret sai, booking vẫn đi qua và lỗi được ghi vào `error_log`.
+
 ### 4. Trang của luồng đặt phòng
 
 ```sh

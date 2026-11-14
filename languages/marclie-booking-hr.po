@@ -8273,3 +8273,7 @@ msgstr "Početak svakog novog broja rezervacije, npr. %s. Postojeće rezervacije
 #: build/admin/settings.e9073e3b.js:20
 msgid "e.g. the name of your rental"
 msgstr "npr. naziv vašeg smještaja"
+
+#: src/Rest/Public/BaseController.php:251
+msgid "The security check failed. Please try again."
+msgstr "Sigurnosna provjera nije uspjela. Pokušajte ponovno."

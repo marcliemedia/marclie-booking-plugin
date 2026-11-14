@@ -55,3 +55,9 @@ if ( ! function_exists( 'apply_filters' ) ) {
 		return $value;
 	}
 }
+
+if ( ! function_exists( 'wp_parse_url' ) ) {
+	function wp_parse_url( string $url, int $component = -1 ): mixed {
+		return parse_url( $url, $component ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
+	}
+}
